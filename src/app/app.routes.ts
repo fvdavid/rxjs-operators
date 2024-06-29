@@ -15,5 +15,10 @@ export const routes: Routes = [
         path: 'debounce-distinct',
         loadComponent: () =>
             import('./component/debounce-distinct/debounce-distinct.component').then(dd => dd.DebounceDistinctComponent)
+    },
+    {
+        path: 'buffer',
+        loadComponent: () =>
+            import('./component/buffer/buffer.component').then(b => b.BufferComponent)
     }
 ];
