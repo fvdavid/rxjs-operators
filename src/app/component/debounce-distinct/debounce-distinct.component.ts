@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ProductService } from '../../service/product.service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
+import { EMPTY, catchError, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-debounce-distinct',
@@ -25,10 +25,21 @@ export class DebounceDistinctComponent {
     this.searchControl.valueChanges.pipe(
       debounceTime(500), // wait 500ms after user input to send data
       distinctUntilChanged(), // don't send the same value if not changed
-      switchMap(value => this.productService.loadUsersByPrefix(value)),
+
+      switchMap(value => this.productService.loadUsersByPrefix(value).pipe(
+        // even if you receive an Error, your search functionality will still continue working.
+        catchError(() => EMPTY)
+      )),
+
+
       map(search => {
         console.log('search ==> ', search);
-      })
+      }),
+
+      // This will have a side-effect that once you receive an error - your search will STOP working. 
+      // Even if you type something into the input field again (after getting an error),
+      // it will not make additional API calls, since your chain has already errored out (and you handled it).
+      catchError(() => EMPTY)
     )
   )
 }
