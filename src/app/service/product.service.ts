@@ -3,9 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { EMPTY, Observable, catchError } from 'rxjs';
 import { Product } from '../model/product';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ProductService {
 
   private http = inject(HttpClient);
@@ -14,6 +12,13 @@ export class ProductService {
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>('https://dummyjson.com/products')
+      .pipe(
+        catchError(() => EMPTY)
+      );
+  }
+
+  loadUsersByPrefix(value: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`https://dummyjson.com/products/search?q=${{ value }}`)
       .pipe(
         catchError(() => EMPTY)
       );
