@@ -1,0 +1,21 @@
+<p>
+    share-share-replay works!
+</p>
+
+@if (!flagFinalize) {
+<ng-container>
+    <ng-container> {{ count1$ | async }} </ng-container>
+
+    @if(flag) {
+    <ng-container> {{ count2$ | async }} </ng-container>
+    }
+</ng-container>
+}
+
+<button (click)="flagFinalize = !flagFinalize">
+    FINALIZE
+</button>
+
+<button (click)="subject.next(subject.value + 1)">
+    INCREMENT
+</button>

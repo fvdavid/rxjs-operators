@@ -20,5 +20,10 @@ export const routes: Routes = [
         path: 'buffer',
         loadComponent: () =>
             import('./component/buffer/buffer.component').then(b => b.BufferComponent)
+    },
+    {
+        path: 'share-shareReplay',
+        loadComponent: () =>
+            import('./component/share-share-replay/share-share-replay.component').then(ss => ss.ShareShareReplayComponent)
     }
 ];
