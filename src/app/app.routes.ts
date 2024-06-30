@@ -35,5 +35,10 @@ export const routes: Routes = [
         path: 'exhaustMap',
         loadComponent: () =>
             import('./component/exhaust-map/exhaust-map.component').then(e => e.ExhaustMapComponent)
+    },
+    {
+        path: 'expand',
+        loadComponent: () =>
+            import('./component/expand/expand.component').then(x => x.ExpandComponent)
     }
 ];
