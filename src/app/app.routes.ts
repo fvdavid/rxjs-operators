@@ -30,5 +30,10 @@ export const routes: Routes = [
         path: 'merge-scan',
         loadComponent: () =>
             import('./component/merge-scan/merge-scan.component').then(ms => ms.MergeScanComponent)
+    },
+    {
+        path: 'exhaustMap',
+        loadComponent: () =>
+            import('./component/exhaust-map/exhaust-map.component').then(e => e.ExhaustMapComponent)
     }
 ];

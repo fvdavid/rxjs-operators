@@ -23,4 +23,11 @@ export class ProductService {
         catchError(() => EMPTY)
       );
   }
+
+  getProductsLimited(limit: number = 10): Observable<Product[]> {
+    return this.http.get<Product[]>(`https://dummyjson.com/products?limit=${limit}&skip=10&select=title,price`)
+      .pipe(
+        catchError(() => EMPTY)
+      );
+  }
 }

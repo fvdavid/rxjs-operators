@@ -13,3 +13,5 @@
 ## Source
 
     https://dev.to/krivanek06/advanced-rxjs-operators-you-know-but-not-well-enough-1ela
+
+API: https://dummyjson.com
