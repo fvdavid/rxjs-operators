@@ -1,0 +1,15 @@
+<p>merge-scan works!</p>
+
+<section class="app-description">
+    <div>
+        <h1>
+            Start clicking around the page...
+        </h1>
+    </div>
+</section>
+<div>
+    <button (click)="reset$.next(); $event.stopPropagation()" mat-stroked-button>Reset State</button>
+</div>
+@for (click of clicks$ | async; track $index) {
+<div [style.left.px]="click.clientX" [style.top.px]="click.clientY" class="click"></div>
+}

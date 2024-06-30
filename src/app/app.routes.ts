@@ -25,5 +25,10 @@ export const routes: Routes = [
         path: 'share-shareReplay',
         loadComponent: () =>
             import('./component/share-share-replay/share-share-replay.component').then(ss => ss.ShareShareReplayComponent)
+    },
+    {
+        path: 'merge-scan',
+        loadComponent: () =>
+            import('./component/merge-scan/merge-scan.component').then(ms => ms.MergeScanComponent)
     }
 ];
